@@ -6,6 +6,8 @@ use axum::{
     routing::{get, post},
     Router,
 };
+use std::net::SocketAddr;
+use tower_http::cors::{Any, CorsLayer};
 
 use crate::routes::api_routes;
 
