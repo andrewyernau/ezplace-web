@@ -63,23 +63,36 @@ button {
 /* NAVBAR CONFIGURATION */
 
 .navbar{
-
+    background-color: var(--lighter-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--box-shadow);
 }
 
 .navbar-container{
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .logo{
-
+    display: flex;
+    align-items: center;
 }
 
 .logo img{
-
+    height: 40px;
+    margin-right: 10px;
 }
 
 .logo span{
-
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent);
 }
 
 .nav-links{
