@@ -34,8 +34,164 @@
         </div>
     </nav>
 
+    <div id="login-modal" class="modal">
+        <div class="modal-content" id="login-modal-content">
+            <!-- HTMX return -->
+        </div>
+    </div>
+
     <main class="main-content">
-        This is the main content
+        <section id="about" class="section-box">
+            <h2>About This Server</h2>
+            <div class="about-content">
+                <div class="server-description">
+                    <p>Welcome to EzPlace Network.<br> Ezplace Network is not only a platform
+                        for connecting people, but also an experience. We are a team of
+                        professionals who are passionate about what we do and give our
+                        best to make your experience with us unforgettable.<br/> Join to
+                        discover an unique RPG experience or a relaxing Survival adventure, where you can create your own
+                        character, make friends, and explore the world of Ezplace
+                        Network. We are here to make your dreams come true.</p>
+                    <button id="copy-ip" class="copy-btn" data-ip="play.ezplace.net">
+                        Copy Server IP
+                    </button>
+                </div>
+                <div class="server-stats" hx-get="http://localhost:8000/api/server-stats" hx-trigger="load" hx-swap="innerHTML">
+                    <!-- Server stats HTMX -->
+                </div>
+            </div>
+        </section>
+
+        <section class="section-box">
+            <h2>Latest Announcements</h2>
+            <div class="announcement-container">
+                <div class="announcement-media">
+                    <img src="assets/images/announcement.jpg" alt="Server Update Announcement">
+                </div>
+                <div class="announcement-text">
+                    <h3>Opening Coming Soon!</h3>
+                    <p>Get ready for the Network opening! Join in and discover our Survival and UHC game modes! And more to come really soon!</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-box">
+            <h2>My Projects</h2>
+            <div class="projects-container">
+                <div class="project-item">
+                    <div class="project-icon">
+                        <img src="assets/images/avas.png" alt="AVAS Project">
+                    </div>
+                    <div class="project-info">
+                        <h3>A.V.A.S</h3>
+                        <p>Anti Villager abuse system is a plugin made by andrewYernau to prevent people from abusing villagers trading system with rerolls.</p>
+                        <a href="https://modrinth.com/plugin/antivillagerabusesystem" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <img src="assets/images/ultimateblood.png" alt="UltimateBlood Project">
+                    </div>
+                    <div class="project-info">
+                        <h3>UltimateBlood</h3>
+                        <p>UltimateBlood is a plugin made by andrewYernau implementing a fresh game mechanic about blood particles and bleeding effects.</p>
+                        <a href="https://modrinth.com/plugin/ultimateblood" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <img src="assets/images/librebuild.webp" alt="LibreBuild Project">
+                    </div>
+                    <div class="project-info">
+                        <h3>LibreBuild</h3>
+                        <p>LibreBuild introduces a legacy mechanic for all players—the power to instantly bring your dream house to life!</p>
+                        <a href="https://modrinth.com/plugin/librebuild" class="project-link">View Project</a>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <img src="assets/images/librebuild.png" alt="LibreBuild Project">
+                    </div>
+                    <div class="project-info">
+                        <h3>DeathTime</h3>
+                        <p>Tic tac! Every player now has a timer. Let it hit zero, and you're done for!</p>
+                        <a href="https://modrinth.com/plugin/deathtime" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shop" class="section-box">
+            <h2>Shop</h2>
+            <div class="shop-container">
+                <div class="shop-row">
+                    <div class="shop-card">
+                        <h3>WARRIOR</h3>
+                        <p class="price">$3.49</p>
+                        <p class="rank-description">A rank for those seeking elegance and recognition in the realm.</p>
+                        <ul>
+                            <li>Exclusive chat tag [WARRIOR]</li>
+                            <li>Access to a custom armor emblem</li>
+                            <li>Ability to use color in chat</li>
+                            <li>2 home points</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Become a warrior</a>
+                    </div>
+                    <div class="shop-card highlighted">
+                        <div class="popular-tag">Most Popular</div>
+                        <h3>NOBLE</h3>
+                        <p class="price">$9.99</p>
+                        <p class="rank-description">A rank for those seeking elegance and recognition in the realm.</p>
+                        <ul>
+                            <li>Exclusive chat tag [NOBLE]</li>
+                            <li>Special recognition in public server eventst</li>
+                            <li>5 home points</li>
+                        </ul>
+                        <a href="#" class="buy-btn highlight-btn">Become a noble</a>
+                    </div>
+                    <div class="shop-card">
+                        <h3>SORCERER</h3>
+                        <p class="price">$10.99</p>
+                        <p class="rank-description">Perfect for those who want a magical touch to their experience.</p>
+                        <ul>
+                            <li>Exclusive chat tag [SORCERER]</li>
+                            <li>Access to fly skill</li>
+                            <li>Access to magical particles when walking</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Become a sorcerer</a>
+                    </div>
+                </div>
+                <div class="shop-row">
+                    <div class="shop-card">
+                        <h3>BARD</h3>
+                        <p class="price">$14.99</p>
+                        <p class="rank-description">For lovers of music and stories, a rank full of style and creativity.</p>
+                        <ul>
+                            <li>Exclusive chat tag [BARD]</li>
+                            <li>Access to a musical emote in chat (decorative musical notes)</li>
+                            <li>Musical particle effects when moving</li>
+                            <li>Exclusive log in and log out animations</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Become a bard</a>
+                    </div>
+                    <div class="shop-card">
+                        <h3>WANDERER</h3>
+                        <p class="price">$1.99</p>
+                        <p class="rank-description">For adventurers who want to leave a special mark on the world.</p>
+                        <ul>
+                            <li>Exclusive chat tag [WANDERER]</li>
+                            <li>Access to bow aim skills</li>
+                        </ul>
+                        <a href="#" class="buy-btn">Become a wanderer</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <p>To see all the products we have available for you.</p>
+            <br>
+            <a href="" class="project-link">Go visit the store</a>
+        </section>
     </main>
     
     <footer class="footer">
