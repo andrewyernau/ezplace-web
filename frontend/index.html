@@ -5,15 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EzPlace Network - Minecraft Network</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="assets/images/icon.ico">
     <script src="js/htmx.min.js"></script>
 </head>
 <body>
-    <main>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/images/icon.png" alt="EzPlace Network logo">
+            <span>EzPlace Network</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="#about" class ="nav-link">About this server</a>
+            <a href="#projects" class ="nav-link">Our projects</a>
+            <a href="#shop" class ="nav-link">Shop</a>
+        </div>
+
+        <div id="auth-section">
+            <button id="login-btn" class="login-btn">Login</button> <!--Add here HX-GET-->
+        </div>
+    </nav>
+
+    <main class="main-content">
         This is the main content
     </main>
     
-    <footer>
+    <footer class="footer">
         This is the footer
     </footer>
 </body>
