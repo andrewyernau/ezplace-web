@@ -1,3 +1,6 @@
+
+/* GENERAL CONFIGURATION */
+
 :root {
     --dark-bg: #1a1a1a;
     --lighter-bg: #2a2a2a;
@@ -54,3 +57,53 @@ button {
     border: none;
     background: none;
 }
+
+/* END OF GENERAL CONFIG */
+
+/* NAVBAR CONFIGURATION */
+
+.navbar{
+
+}
+
+.navbar-container{
+
+}
+
+.logo{
+
+}
+
+.logo img{
+
+}
+
+.logo span{
+
+}
+
+.nav-links{
+
+}
+
+.nav-link{
+
+}
+
+.nav-link:hover{
+
+}
+
+#auth-section{
+
+}
+
+.login-btn{
+
+}
+
+.login-btn:hover{
+    
+}
+
+/* END OF NAVBAR CONFIG */
