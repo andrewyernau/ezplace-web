@@ -10,6 +10,8 @@
     --warm-accent: #ff9966;
     --warm-light: #ffcc99;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --error: #ff4c4c;
+    --success: #4caf50;
 }
 
 * {
@@ -44,12 +46,6 @@ h2 {
 h3 {
     margin-bottom: 15px;
     color: var(--warm-light);
-}
-
-button {
-    cursor: pointer;
-    border: none;
-    background: none;
 }
 
 button {
@@ -96,27 +92,113 @@ button {
 }
 
 .nav-links{
-
+    display: flex;
+    align-items: center;
 }
 
 .nav-link{
-
+    margin: 0 15px;
+    color: var(--text);
+    transition: color 0.3s ease;
 }
 
 .nav-link:hover{
+    color: var(--accent);
+}
 
+.nav-link.active {
+    color: var(--accent);
 }
 
 #auth-section{
-
+    margin-left: 15px;
 }
 
 .login-btn{
-
+    background-color: var(--accent);
+    color: var(--dark-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 .login-btn:hover{
-    
+    background-color: var(--accent-hover);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text);
+    margin: 3px 0;
+    transition: all 0.3s ease;
 }
 
 /* END OF NAVBAR CONFIG */
+
+/* MAIN CONFIG */
+
+.main-content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* END OF MAIN CONFIG*/
+
+/* FOOTER CONFIG */
+
+.footer {
+    background-color: var(--lighter-bg);
+    padding: 40px 0;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* END OF FOOTER CONFIG*/
+
+/* EXTRA CONFIG */
+
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    z-index: 99;
+}
+
+.scroll-top:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-5px);
+}
+
+.scroll-top img {
+    width: 20px;
+    height: 20px;
+}
+
+/* END OF EXTRA CONFIG*/
