@@ -24,7 +24,14 @@
             </div>
     
             <div id="auth-section">
-                <button id="login-btn" class="login-btn">Login</button> <!--Add here HX-GET-->
+                <button id="login-btn" 
+                        class="login-btn"
+                        hx-get="/api/login-form" 
+                        hx-target="#login-modal-content" 
+                        hx-trigger="click" 
+                        onclick="document.getElementById('login-modal').style.display='block'">
+                            Login
+                </button>
             </div>
 
             <div class="hamburger">
@@ -57,7 +64,7 @@
                         Copy Server IP
                     </button>
                 </div>
-                <div class="server-stats" hx-get="http://localhost:8000/api/server-stats" hx-trigger="load" hx-swap="innerHTML">
+                <div class="server-stats" hx-get="/api/server-stats" hx-trigger="load" hx-swap="innerHTML">
                     <!-- Server stats HTMX -->
                 </div>
             </div>
@@ -67,7 +74,7 @@
             <h2>Latest Announcements</h2>
             <div class="announcement-container">
                 <div class="announcement-media">
-                    <img src="assets/images/announcement.jpg" alt="Server Update Announcement">
+                    <img src="assets/images/announcements.avif" alt="Server Update Announcement">
                 </div>
                 <div class="announcement-text">
                     <h3>Opening Coming Soon!</h3>
@@ -112,7 +119,7 @@
                 </div>
                 <div class="project-item">
                     <div class="project-icon">
-                        <img src="assets/images/librebuild.png" alt="DeathTime Project">
+                        <img src="assets/images/librebuild.webp" alt="DeathTime Project">
                     </div>
                     <div class="project-info">
                         <h3>DeathTime</h3>

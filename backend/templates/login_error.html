@@ -1,0 +1,4 @@
+<div id='auth-section'>
+    <div class='error-message'>{{ error_message }}</div>
+    <button id='login-btn' class='login-btn' hx-get='/api/login-form' hx-target='#login-modal-content' hx-trigger='click' onclick="document.getElementById('login-modal').style.display='block'">Login</button>
+</div>

@@ -1,0 +1,9 @@
+<span class='close'>&times;</span>
+<h2>Login with your Minecraft username</h2>
+<form id='login-form' hx-post='/api/session' hx-target='#auth-section' hx-swap='outerHTML'>
+    <div class='form-group'>
+        <label for='minecraft-username'>Minecraft Username</label>
+        <input type='text' id='minecraft-username' name='username' required>
+    </div>
+    <button type='submit' class='submit-btn'>Login</button>
+</form>

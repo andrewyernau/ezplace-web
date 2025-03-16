@@ -1,0 +1,9 @@
+<div id='auth-section'>
+    <div class="user-profile">
+        <img src='{{ avatar_url }}' alt='User Avatar' class='user-avatar'>
+        <span class='username'>{{ username }}</span>
+        <div class='dropdown-content'>
+            <a href='#' hx-get='/api/logout' hx-target='#auth-section' hx-swap='outerHTML'>Logout</a>
+        </div>
+    </div>
+</div>
