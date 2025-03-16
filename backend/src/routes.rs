@@ -1,10 +1,7 @@
 use axum::{
     routing::{get, post},
     Router,
-    Extension,
 };
-use std::sync::Arc;
-use tera::Tera;
 
 use crate::handlers::{get_login_form, handle_login, get_server_stats, logout};
 
