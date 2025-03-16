@@ -1,8 +1,7 @@
 use axum::{
     routing::{get, post},
-    Router,
+    Router,   
 };
-
 use crate::handlers::{get_login_form, handle_login, get_server_stats, logout};
 
 pub fn api_routes() -> Router {

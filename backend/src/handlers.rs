@@ -4,7 +4,7 @@ use axum::{
 };
 
 use crate::models::{LoginRequest, MojangResponse, ServerStats, Players};
-use reqwest::header::{ USER_AGENT};
+use reqwest::header::USER_AGENT;
 
 use std::fmt;
 
