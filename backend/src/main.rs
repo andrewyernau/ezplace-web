@@ -39,7 +39,7 @@ async fn main() {
         .fallback(handle_404)
         .layer(cors);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8000));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 5173));
     println!("Server running on http://{}", addr);
 
     let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
