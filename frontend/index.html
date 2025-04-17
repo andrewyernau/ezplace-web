@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo">
-                <img src="assets/images/icon.png" alt="EzPlace Network logo">
+                <img src="assets/images/icon.webp" alt="EzPlace Network logo">
                 <span>EzPlace Network</span>
             </div>
     
@@ -23,7 +23,8 @@
                 <a href="#shop" class ="nav-link">Shop</a>
             </div>
     
-            <div id="auth-section">
+            <div id="auth-section" hx-get="/api/auth-status" hx-trigger="load">
+                <!-- Auth status will load here -->
                 <button id="login-btn" 
                         class="login-btn"
                         hx-get="/api/login-form" 
@@ -75,12 +76,31 @@
             <h2>Latest Announcements</h2>
             <div class="announcement-container">
                 <div class="announcement-media">
+                    <!--
                     <img src="assets/images/announcements.avif" alt="Server Update Announcement">
+                    <video> 
+                        <source src="assets/videos/announcement.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    -->
+                    <video controls preload="none" poster="assets/images/thumbnail.webp">
+                        <source src="assets/videos/announcement.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
                 <div class="announcement-text">
-                    <h3>Opening Coming Soon!</h3>
-                    <p>Get ready for the Network opening! Join in and discover our Survival and UHC game modes! And more to come really soon!</p>
-                    <a href="#" class="read-more">Read More</a>
+                    <h3>EzPlace opens its doors!</h3>
+                    <p>We are opening Survival game mode to everyone. Come and enjoy unique Survival experience with us!</p>
+                    <div id="read-more-section" class= "read-more">
+                        <button id="read-more-btn" 
+                                class="read-more-btn"
+                                hx-get="/api/read-more-form" 
+                                hx-target="#read-more-modal-content" 
+                                hx-trigger="click" 
+                                onclick="document.getElementById('read-more-modal').style.display='block'">
+                                    Read more
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -90,7 +110,7 @@
                 <div class="projects-container">
                     <div class="project-item">
                         <div class="project-icon">
-                            <img src="assets/images/avas.png" alt="AVAS Project">
+                            <img src="assets/images/avas.webp" alt="AVAS Project">
                         </div>
                         <div class="project-info">
                             <h3>A.V.A.S</h3>
@@ -100,7 +120,7 @@
                     </div>
                     <div class="project-item">
                         <div class="project-icon">
-                            <img src="assets/images/ultimateblood.png" alt="UltimateBlood Project">
+                            <img src="assets/images/ultimateblood.webp" alt="UltimateBlood Project">
                         </div>
                         <div class="project-info">
                             <h3>UltimateBlood</h3>

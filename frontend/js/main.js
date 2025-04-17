@@ -71,4 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('login-modal').style.display = 'none';
         }
     });
+
+    document.body.addEventListener('htmx:beforeSwap', function(event) {
+        console.log("Before swap:", event.detail);
+        console.log("Target:", event.detail.target);
+    });
+    
+    document.body.addEventListener('htmx:afterSwap', function(event) {
+        console.log("After swap:", event.detail);
+        console.log("Target:", event.detail.target);
+        console.log("Response:", event.detail.xhr.responseText);
+    });
 });
