@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('close') || event.target == document.getElementById('read-more-modal')) {
+            document.getElementById('read-more-modal').style.display = 'none';
+        }
+    });
+
     // Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -82,4 +88,23 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Target:", event.detail.target);
         console.log("Response:", event.detail.xhr.responseText);
     });
+
+    const popup = document.getElementById("pop-up-cookies");
+    const acceptBtn = document.getElementById("accept-cookies");
+    const closeBtn = popup.querySelector(".close");
+    
+    // Show the popup if cookies haven't been accepted
+    if (!localStorage.getItem("cookiesAccepted")) {
+        setTimeout(() => {
+            popup.style.display = "block";
+        }, 500);
+    }
+    
+    // Function to close the popup and save to localStorage
+    const closePopup = () => {
+        popup.style.display = "none";
+        localStorage.setItem("cookiesAccepted", "true");
+    };
+    acceptBtn.addEventListener("click", closePopup);
+    closeBtn.addEventListener("click", closePopup);
 });

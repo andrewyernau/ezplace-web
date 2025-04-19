@@ -4,7 +4,7 @@
 :root {
     --dark-bg: #1a1a1a;
     --lighter-bg: #2a2a2a;
-    --accent: #cccccc; /* Púrpura */
+    --accent: #cccccc; /* Gris claro */
     --accent-hover: #7437de;
     --highlighted-bg: #e83e8c; /* Púrpura oscuro */
     --highlighted-text: #f5f5f5; /* Blanco */
@@ -37,7 +37,11 @@ a {
 }
 
 a:hover {
-    color: var(--lighter-bg);
+    color: var(--accent);
+}
+
+.logout-txt:hover {
+    color: var(--accent);
 }
 
 h2 {
@@ -345,10 +349,124 @@ button {
     min-width: 300px;
 }
 
-.read-more {
+.read-more-link {
+    color: var(--warm-accent);
+    position: relative;
+    font-weight: bold;
+    transition: color 0.3s ease;
     display: inline-block;
     margin-top: 15px;
 }
+
+.read-more-link:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--warm-accent);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.read-more-link:hover {
+    color: var(--warm-light);
+}
+
+.read-more-link:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* READ MORE MODAL */
+
+/* Modal Base Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: var(--lighter-bg);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 80%;  /* Wider modal (was likely too narrow) */
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto;  /* Enable scrolling for the whole modal */
+    position: relative;
+}
+
+/* READ MORE MODAL */
+.modal-image {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-image img {
+    max-width: 90%;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.modal-description {
+    /* Remove fixed height and overflow to prevent double scrollbars */
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
+.modal-description p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.modal-description h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--warm-accent);
+}
+
+.modal-description ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.modal-description li {
+    margin-bottom: 5px;
+}
+
+.modal-cta {
+    margin-top: 25px;
+    margin-bottom: 10px; /* Add bottom margin */
+    text-align: center;
+}
+
+.modal-cta .social-link {
+    background-color: var(--accent);
+    color: var(--dark-bg);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.modal-cta .social-link:hover {
+    background-color: var(--accent-hover);
+}
+
+/* END OF MODAL */
 
 
 .projects-container {
@@ -538,6 +656,59 @@ button {
 
 /* END OF MAIN CONFIG*/
 
+/* POP UP COOKIES */
+.pop-up-cookies {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    height: fit-content;
+    max-height: 200px;
+    background-color: var(--lighter-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    z-index: 1050;
+    display: none; /* Oculto por defecto, se mostrará con JavaScript */
+}
+
+.pop-up-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pop-up-content h3 {
+    margin-bottom: 5px;
+}
+
+.pop-up-cookies .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text);
+}
+
+.accept-cookies-btn {
+    background-color: var(--accent);
+    color: var(--dark-bg);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: flex-start;
+}
+
+.accept-cookies-btn:hover {
+    background-color: var(--accent-hover);
+}
+/* END OF POP UP*/
 /* FOOTER CONFIG */
 
 .footer {
@@ -695,6 +866,22 @@ button {
     .modal-content {
         width: 90%;
         margin: 20% auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+        margin: 10% auto;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+        padding: 15px;
+        margin: 5% auto;
     }
 }
 

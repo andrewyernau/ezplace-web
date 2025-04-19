@@ -21,6 +21,7 @@
                 <a href="#about" class ="nav-link">About this server</a>
                 <a href="#projects" class ="nav-link">Our projects</a>
                 <a href="#shop" class ="nav-link">Shop</a>
+                <a href="https://maps.ezplace.net" class ="nav-link">Survival Map</a>
             </div>
     
             <div id="auth-section" hx-get="/api/auth-status" hx-trigger="load">
@@ -45,6 +46,12 @@
 
     <div id="login-modal" class="modal">
         <div class="modal-content" id="login-modal-content">
+            <!-- HTMX return -->
+        </div>
+    </div>
+
+    <div id="read-more-modal" class="modal">
+        <div class="modal-content" id="read-more-modal-content">
             <!-- HTMX return -->
         </div>
     </div>
@@ -90,22 +97,32 @@
                 </div>
                 <div class="announcement-text">
                     <h3>EzPlace opens its doors!</h3>
-                    <p>We are opening Survival game mode to everyone. Come and enjoy unique Survival experience with us!</p>
-                    <div id="read-more-section" class= "read-more">
-                        <button id="read-more-btn" 
-                                class="read-more-btn"
-                                hx-get="/api/read-more-form" 
-                                hx-target="#read-more-modal-content" 
-                                hx-trigger="click" 
-                                onclick="document.getElementById('read-more-modal').style.display='block'">
-                                    Read more
-                        </button>
+                    <p>
+                        We are officially opening our Survival and UHC game modes to all players! 
+                        Join a vibrant mixed community, english and spanish, explore custom features, and take part in this first era of EzPlace. 
+                        This is just the beginning... but, do you dare to discover our adventure?
+                    </p>
+                    <div id="read-more-section" class="read-more">
+                        <a href="#" 
+                           id="read-more-btn"
+                           class="read-more-link"
+                           hx-get="/api/read-more-form"
+                           hx-target="#read-more-modal-content"
+                           hx-trigger="click"
+                           onclick="document.getElementById('read-more-modal').style.display='block'">
+                            Read more
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
+        
+
         <section id="projects" class="section-box">
+            <h2>Our Projects</h2>
+            <p>Here you can find some of our projects such as plugins,mods...</p>
+            <br>
             <div class="projects-wrapper">
                 <div class="projects-container">
                     <div class="project-item">
@@ -164,18 +181,19 @@
             <div class="shop-container">
                 <div class="shop-row">
                     <div class="shop-card">
-                        <h3>WARRIOR</h3>
-                        <p class="price">$3.49</p>
-                        <p class="rank-description">A rank for those seeking elegance and recognition in the realm.</p>
+                        <h3>Survival Ranks</h3>
+                        <p class="price">$2.49-$14.99 per month</p>
+                        <p class="rank-description">Get a Survival mode rank .</p>
                         <ul>
-                            <li>Exclusive chat tag [WARRIOR]</li>
-                            <li>Access to a custom armor emblem</li>
+                            <li>Exclusive chat tags</li>
+                            <li>Ability to create custom group chats</li>
                             <li>Ability to use color in chat</li>
-                            <li>2 home points</li>
+                            <li>More home points</li>
+                            <li>And more...</li>
                         </ul>
-                        <a href="#" class="buy-btn">Become a warrior</a>
+                        <a href="https://ezplace.tebex.io/category/survival-ranks" class="buy-btn">Go check all available ranks</a>
                     </div>
-                    <div class="shop-card highlighted">
+                    <!-- <div class="shop-card highlighted">
                         <div class="popular-tag">Most Popular</div>
                         <h3>NOBLE</h3>
                         <p class="price">$9.99</p>
@@ -186,20 +204,31 @@
                             <li>5 home points</li>
                         </ul>
                         <a href="#" class="buy-btn highlight-btn">Become a noble</a>
-                    </div>
+                    </div> -->
                     <div class="shop-card">
-                        <h3>SORCERER</h3>
-                        <p class="price">$10.99</p>
-                        <p class="rank-description">Perfect for those who want a magical touch to their experience.</p>
+                        <h3>Survival items and perks</h3>
+                        <p class="price">$0.99-$4.99</p>
+                        <p class="rank-description">Some items to enhance the experience.</p>
                         <ul>
-                            <li>Exclusive chat tag [SORCERER]</li>
-                            <li>Access to fly skill</li>
-                            <li>Access to magical particles when walking</li>
+                            <li>Mob effect potions</li>
+                            <li>Extra homes</li>
+                            <li>And more...</li>
                         </ul>
-                        <a href="#" class="buy-btn">Become a sorcerer</a>
+                        <a href="#" class="buy-btn">Go check all available items and perks</a>
                     </div>
+
+                    <div class="shop-card">
+                        <h3>Coming soon</h3>
+                        <p class="price">TBA</p>
+                        <p class="rank-description">We are working on a new game mode, and we will have a new store for it.</p>
+                        <ul>
+                            <li>Coming soon...</li>
+                        </ul>
+                        <a href="https://ezplace.tebex.io/category/itemsandperks" class="buy-btn">Stay tuned</a>
+                    </div>
+                    
                 </div>
-                <div class="shop-row">
+                <!-- <div class="shop-row">
                     <div class="shop-card">
                         <h3>BARD</h3>
                         <p class="price">$14.99</p>
@@ -222,14 +251,23 @@
                         </ul>
                         <a href="#" class="buy-btn">Become a wanderer</a>
                     </div>
-                </div>
+                </div> -->
             </div>
             <br>
             <p>To see all the products we have available for you.</p>
             <br>
-            <a href="" class="project-link">Go visit the store</a>
+            <a href="https://ezplace.tebex.io" class="project-link">Go visit the store</a>
         </section>
     </main>
+
+    <div id="pop-up-cookies" class="pop-up-cookies">
+        <span class="close">&times;</span>
+        <div class="pop-up-content">
+            <h3>Cookie Policy</h3>
+            <p>This website uses cookies to ensure you get the best experience on our website. By using our site, you agree to our use of cookies.</p>
+            <button id="accept-cookies" class="accept-cookies-btn">Accept</button>
+        </div>
+    </div>
     
     <footer class="footer">
         <div class="footer-content">
@@ -240,10 +278,43 @@
             <div class="footer-section">
                 <h3>Links</h3>
                 <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookies</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Community</a></li>
+                    <li>
+                        <a 
+                        hx-get="/api/terms" 
+                        hx-target="#read-more-modal-content" 
+                        hx-trigger="click" 
+                        onclick="document.getElementById('read-more-modal').style.display='block'">
+                            Terms of Service and Privacy policy
+                        </a>
+                        
+                    </li>
+                    <li>
+                        <a 
+                        hx-get="/api/cookies" 
+                        hx-target="#read-more-modal-content" 
+                        hx-trigger="click" 
+                        onclick="document.getElementById('read-more-modal').style.display='block'">
+                            Cookies Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                        hx-get="/api/contact" 
+                        hx-target="#read-more-modal-content" 
+                        hx-trigger="click" 
+                        onclick="document.getElementById('read-more-modal').style.display='block'">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                        hx-get="/api/community" 
+                        hx-target="#read-more-modal-content" 
+                        hx-trigger="click" 
+                        onclick="document.getElementById('read-more-modal').style.display='block'">
+                            Community
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -251,7 +322,7 @@
                 <div class="social-links">
                     <a href="https://discord.gg/939UecsD95" class="social-link">Discord</a>
                     <a href="https://ko-fi.com/andrewyernau/posts" class="social-link">KoFi</a>
-                    <a href="#" class="social-link">YouTube</a>
+                    <a href="https://www.youtube.com/@andrewyernau" class="social-link">YouTube</a>
                 </div>
             </div>
         </div>

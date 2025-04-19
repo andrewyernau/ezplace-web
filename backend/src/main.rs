@@ -16,7 +16,6 @@ use axum::{
     response::Html,
     http::{StatusCode, Uri, Method},
     middleware,
-    extract::State,
     response::{IntoResponse, Response},
 };
 use std::{net::SocketAddr, path::PathBuf};
@@ -51,6 +50,11 @@ async fn main() -> Result<()> {
     // API routes without auth requirement
     let api_routes = Router::new()
         .route("/server-stats", get(routes_handlers::get_server_stats))
+        .route("/read-more-form", get(routes_handlers::get_read_more_content))
+        .route("/terms", get(routes_handlers::get_terms_content))
+        .route("/cookies", get(routes_handlers::get_cookies_content))
+        .route("/contact", get(routes_handlers::get_contact_content))
+        .route("/community", get(routes_handlers::get_community_content))
         .merge(web::routes_login::routes())
         .merge(api_routes_auth);
 
@@ -120,24 +124,26 @@ async fn serve_index_html(ctx: Result<Ctx>) -> Result<Html<String>> {
     let path = PathBuf::from("../frontend/index.html");
     match tokio::fs::read_to_string(path).await {
         Ok(mut html) => {
-            // Reemplazar la sección de autenticación según el contexto
+            // Replace the authentication section according to the context
             match ctx {
                 Ok(ctx) => {
                     let user_id = ctx.user_id();
                     let username = ctx.username();
                     let avatar_url = format!("https://crafatar.com/avatars/{}?size=50&overlay", user_id);
                     
+                    println!("->> {:<12} - serve_index_html - Authenticated as {}", "HANDLER", username);
+                    
                     let auth_html = format!(r#"<div id='auth-section'>
                         <div class='user-profile'>
                             <img src='{}' alt='User Avatar' class='user-avatar'>
                             <span class='username'>{}</span>
                             <div class='dropdown-content'>
-                                <a href='#' hx-get='/api/logout' hx-target='#auth-section' hx-swap='outerHTML'>Logout</a>
+                                <a href='#' id="logout-txt" hx-get='/api/logout' hx-target='#auth-section' hx-swap='outerHTML'>Logout</a>
                             </div>
                         </div>
                     </div>"#, avatar_url, username);
                     
-                    // Reemplazar la sección de autenticación en el HTML
+                    // Replace the authentication section in the HTML
                     html = html.replace(r#"<div id='auth-section'>
                 <button id='login-btn' 
                         class='login-btn'
@@ -149,7 +155,10 @@ async fn serve_index_html(ctx: Result<Ctx>) -> Result<Html<String>> {
                 </button>
             </div>"#, &auth_html);
                 },
-                Err(_) => {} // No hacer nada, mantener el HTML original
+                Err(err) => {
+                    println!("->> {:<12} - serve_index_html - Not authenticated: {:?}", "HANDLER", err);
+                    // No need to modify HTML for unauthenticated users
+                }
             }
             
             Ok(Html(html))
