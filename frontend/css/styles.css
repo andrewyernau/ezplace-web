@@ -490,13 +490,21 @@ button {
 }
 
 .project-icon {
-    flex: 0 0 80px;
+    width: 96px;
+    height: 96px;
     margin-right: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .project-icon img {
     width: 100%;
-    border-radius: 8px;
+    height: 100%;
+    object-fit: cover;
 }
 
 .project-info {
