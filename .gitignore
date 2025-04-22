@@ -8,7 +8,6 @@ target/
 Cargo.lock
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
-/frontend/assets/*
 tests
 # RustRover
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
