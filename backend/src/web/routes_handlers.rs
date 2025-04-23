@@ -2,96 +2,97 @@
 use axum::response::Html;
 use tower_cookies::{Cookie, Cookies};
 
+use crate::web::minecraft_query::query_minecraft_server;
 use crate::models::{Players, ServerStats};
 use crate::web::AUTH_TOKEN;
 use crate::{Error, Result};
 use reqwest::header::USER_AGENT;
 
 // Function to fetch Minecraft server status
-async fn fetch_server_status(host: &str) -> Result<ServerStats> {
-    let url = format!("https://api.mcsrvstat.us/2/{}", host);
+// async fn fetch_server_status(host: &str) -> Result<ServerStats> {
+//     let url = format!("https://api.mcsrvstat.us/2/{}", host);
     
-    // Create a client with proper timeout settings
-    let client = reqwest::Client::builder()
-        .timeout(std::time::Duration::from_secs(10))
-        .build()
-        .map_err(|e| Error::ServerError(format!("Client build error: {}", e)))?;
+//     // Create a client with proper timeout settings
+//     let client = reqwest::Client::builder()
+//         .timeout(std::time::Duration::from_secs(10))
+//         .build()
+//         .map_err(|e| Error::ServerError(format!("Client build error: {}", e)))?;
     
-    // Make the request with User-Agent header
-    let response = client
-        .get(&url)
-        .header(USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-        .send()
-        .await
-        .map_err(|e| Error::ServerError(format!("Request error: {}", e)))?;
+//     // Make the request with User-Agent header
+//     let response = client
+//         .get(&url)
+//         .header(USER_AGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+//         .send()
+//         .await
+//         .map_err(|e| Error::ServerError(format!("Request error: {}", e)))?;
     
-    // Check status code first
-    if !response.status().is_success() {
-        return Err(Error::ServerError(format!("API returned error status: {}", response.status())));
-    }
+//     // Check status code first
+//     if !response.status().is_success() {
+//         return Err(Error::ServerError(format!("API returned error status: {}", response.status())));
+//     }
     
-    let response_text = response
-        .text()
-        .await
-        .map_err(|e| Error::ServerError(format!("Response text error: {}", e)))?;
+//     let response_text = response
+//         .text()
+//         .await
+//         .map_err(|e| Error::ServerError(format!("Response text error: {}", e)))?;
     
-    // Debug output - remove in production
-    // println!("API Response: {}", &response_text);
+//     // Debug output - remove in production
+//     // println!("API Response: {}", &response_text);
     
-    if response_text.is_empty() {
-        return Err(Error::ServerError("Empty response from server".to_string()));
-    }
+//     if response_text.is_empty() {
+//         return Err(Error::ServerError("Empty response from server".to_string()));
+//     }
     
-    // Try parsing the JSON with error handling
-    let json: serde_json::Value = match serde_json::from_str(&response_text) {
-        Ok(json) => json,
-        Err(e) => {
-            // Log the first portion of the response for debugging
-            let preview = if response_text.len() > 100 {
-                format!("{}...", &response_text[0..100])
-            } else {
-                response_text.clone()
-            };
-            eprintln!("JSON parse error: {}. Response preview: {}", e, preview);
-            return Err(Error::ServerError(format!("Failed to parse JSON: {}", e)));
-        }
-    };
+//     // Try parsing the JSON with error handling
+//     let json: serde_json::Value = match serde_json::from_str(&response_text) {
+//         Ok(json) => json,
+//         Err(e) => {
+//             // Log the first portion of the response for debugging
+//             let preview = if response_text.len() > 100 {
+//                 format!("{}...", &response_text[0..100])
+//             } else {
+//                 response_text.clone()
+//             };
+//             eprintln!("JSON parse error: {}. Response preview: {}", e, preview);
+//             return Err(Error::ServerError(format!("Failed to parse JSON: {}", e)));
+//         }
+//     };
     
-    // Field extraction
-    let online = json
-        .get("online")
-        .and_then(|v| v.as_bool())
-        .unwrap_or(false);
+//     // Field extraction
+//     let online = json
+//         .get("online")
+//         .and_then(|v| v.as_bool())
+//         .unwrap_or(false);
     
-    // Version info
-    let protocol_name = json
-        .get("protocol_name")
-        .and_then(|v| v.as_str())
-        .or_else(|| json.get("version").and_then(|v| v.as_str()))
-        .unwrap_or("Unknown");
+//     // Version info
+//     let protocol_name = json
+//         .get("protocol_name")
+//         .and_then(|v| v.as_str())
+//         .or_else(|| json.get("version").and_then(|v| v.as_str()))
+//         .unwrap_or("Unknown");
     
-    // Get player info
-    let players_online = json
-        .get("players")
-        .and_then(|p| p.get("online"))
-        .and_then(|v| v.as_u64())
-        .unwrap_or(0) as u32;
+//     // Get player info
+//     let players_online = json
+//         .get("players")
+//         .and_then(|p| p.get("online"))
+//         .and_then(|v| v.as_u64())
+//         .unwrap_or(0) as u32;
     
-    let players_max = json
-        .get("players")
-        .and_then(|p| p.get("max"))
-        .and_then(|v| v.as_u64())
-        .unwrap_or(0) as u32;
+//     let players_max = json
+//         .get("players")
+//         .and_then(|p| p.get("max"))
+//         .and_then(|v| v.as_u64())
+//         .unwrap_or(0) as u32;
     
-    Ok(ServerStats {
-        online,
-        protocol_name: protocol_name.to_string(),
-        players: Players {
-            online: players_online,
-            max: players_max,
-        },
-    })
-}
+//     Ok(ServerStats {
+//         online,
+//         protocol_name: protocol_name.to_string(),
+//         players: Players {
+//             online: players_online,
+//             max: players_max,
+//         },
+//     })
+// }
 
 // Return the login form HTML
 pub async fn get_login_form() -> Html<String> {
@@ -112,9 +113,11 @@ pub async fn get_login_form() -> Html<String> {
 
 // Get server statistics HTML
 pub async fn get_server_stats() -> Result<Html<String>> {
-    let host = "play.ezplace.net";
-
-    match fetch_server_status(host).await {
+    let host = "192.168.0.16";
+    let port = 25560; // Puerto estándar de Minecraft
+    
+    // Usa la nueva función que implementamos para consultar directamente al servidor
+    match query_minecraft_server(host, port) {
         Ok(status) => {
             let status_class = if status.online {
                 "status-online"
@@ -122,7 +125,6 @@ pub async fn get_server_stats() -> Result<Html<String>> {
                 "status-offline"
             };
             let status_text = if status.online { "Online" } else { "Offline" };
-
             let html = format!(
                 r#"
                     <div class="stats-placeholder">
@@ -146,11 +148,10 @@ pub async fn get_server_stats() -> Result<Html<String>> {
                 status_class,
                 status_text
             );
-
             Ok(Html(html))
         }
         Err(err) => {
-            eprintln!("Error fetching server status: {}", err);
+            eprintln!("Error querying server status: {:?}", err);
             let html = format!(
                 r#"
                     <div class="stats-placeholder">
@@ -169,7 +170,6 @@ pub async fn get_server_stats() -> Result<Html<String>> {
                     </div>
                     "#
             );
-
             Ok(Html(html))
         }
     }
